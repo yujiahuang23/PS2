@@ -11,7 +11,7 @@ md"""
 
 # ╔═╡ 7057c8e4-9e94-4a28-a885-07f5c96ebe39
 html"""
-<p style="font-size:20px;">Student name, Student name, Student name ... Student name</br>
+<p style="font-size:20px;">Yujia Huang, yh945</br>
 Smith School of Chemical and Biomolecular Engineering, Cornell University, Ithaca NY 14850</p>
 """
 
