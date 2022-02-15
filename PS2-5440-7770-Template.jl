@@ -118,6 +118,20 @@ begin
 	species_array
 end
 
+# ╔═╡ 97b0763d-dcab-4afa-b660-52e18b3d523f
+begin
+	(M,R) = size(S)
+	# compute the extreme pathways Tableu -
+	PM = lib.expa(S)
+	
+	# P constaints the extreme pathways (rows) and 𝒩 is the "balanced" array (should be all zeros) -
+	P = PM[:,1:R]
+	N = PM[:,(R+1):end]
+
+	# show -
+	rank(P)
+end
+
 # ╔═╡ ab2bcfd5-3ba7-4388-8a3c-2cb95fba989a
 html"""
 <style>
@@ -133,23 +147,6 @@ a {
     text-decoration: none;
 }
 </style>"""
-
-# ╔═╡ baeb5223-4360-4d46-93e8-56811da54fcc
-(M,R) = size(S)
-
-# ╔═╡ 97b0763d-dcab-4afa-b660-52e18b3d523f
-begin
-	(M,R) = size(S)
-	# compute the extreme pathways Tableu -
-	PM = lib.expa(S)
-	
-	# P constaints the extreme pathways (rows) and 𝒩 is the "balanced" array (should be all zeros) -
-	P = PM[:,1:R]
-	N = PM[:,(R+1):end]
-
-	# show -
-	rank(P)
-end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1145,7 +1142,6 @@ version = "0.9.1+5"
 # ╟─7057c8e4-9e94-4a28-a885-07f5c96ebe39
 # ╠═5338451e-3c4b-4030-bbbb-42eaf4209a89
 # ╟─6970dab5-16bd-4898-b88d-723cb1b3d89e
-# ╠═baeb5223-4360-4d46-93e8-56811da54fcc
 # ╠═97b0763d-dcab-4afa-b660-52e18b3d523f
 # ╟─b473b17e-3bf5-4b6c-af24-fe57b5a7e7e9
 # ╠═999ae1fd-5341-4f66-9db2-dec53fa0cd49
