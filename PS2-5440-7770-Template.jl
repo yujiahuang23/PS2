@@ -15,16 +15,6 @@ html"""
 Smith School of Chemical and Biomolecular Engineering, Cornell University, Ithaca NY 14850</p>
 """
 
-# ╔═╡ 87a183bc-3857-4189-8103-18c46ff3245d
-md"""
-#### Build the stoichiometric array
-"""
-
-# ╔═╡ 5338451e-3c4b-4030-bbbb-42eaf4209a89
-begin
-	# fill me in ...
-end
-
 # ╔═╡ 6970dab5-16bd-4898-b88d-723cb1b3d89e
 md"""
 #### Convex analysis: compute the extreme pathways
@@ -88,6 +78,49 @@ begin
 
 	# return -
 	nothing
+end
+
+# ╔═╡ 5338451e-3c4b-4030-bbbb-42eaf4209a89
+begin
+	# Setup a collection of reaction strings -
+	reaction_array = Array{String,1}()
+
+	# Setup a collection of reaction strings -
+	reaction_array = Array{String,1}()
+
+	# encode the reactions -
+	# internal reactions -
+	push!(reaction_array,"v1,ATP+L-citrulline+L-aspartate,AMP+diphosphate+2-(Nomega-L-arginino)succinate,false")
+	push!(reaction_array,"v2,2-(Nomega-L-arginino)succinate,fumarate+L-arginine,false")
+	push!(reaction_array,"v3,L-arginine+H2O,L-ornithine+urea,false")
+	push!(reaction_array,"v4,carbamoyl phosphate+L-ornithine,phosphate+L-citrulline,false")
+	push!(reaction_array,"v5,2*L-arginine+3*NADPH+3*H_cat+4*O2,2*L-citrulline+2*nitric oxide+3*NADP_cat+4*H2O,true")
+
+	# exchange reactions -
+	push!(reaction_array,"b1,∅,ATP,false")
+	push!(reaction_array,"b2,∅,L-aspartate,false")
+	push!(reaction_array,"b3,AMP,∅,false")
+	push!(reaction_array,"b4,fumarate,∅,false")
+	push!(reaction_array,"b5,diphosphate,∅,false")
+	push!(reaction_array,"b6,H2O,∅,true")
+	push!(reaction_array,"b7,urea,∅,false")
+	push!(reaction_array,"b8,∅,carbamoyl phosphate,false")
+	push!(reaction_array,"b9,phosphate,∅,false")
+	push!(reaction_array,"b10,∅,NADPH,false")
+	push!(reaction_array,"b11,∅,H_cat,false")
+	push!(reaction_array,"b12,∅,O2,false")
+	push!(reaction_array,"b13,nitric oxide,∅,false")
+	push!(reaction_array,"b14,NADP_cat,∅,false")
+	
+	# compute the stoichiometric matrix -
+	# the optional expand arguement = should we split reversible reactions? (default: false)
+	(S, species_array, reaction_name_array) = lib.build_stoichiometric_matrix(reaction_array; 
+		expand=true);
+
+	# show -
+	S
+	species_array
+	reaction_name_array
 end
 
 # ╔═╡ ab2bcfd5-3ba7-4388-8a3c-2cb95fba989a
@@ -1098,7 +1131,6 @@ version = "0.9.1+5"
 # ╔═╡ Cell order:
 # ╟─6b1ad54f-61e4-490d-9032-7a557e8dc82f
 # ╟─7057c8e4-9e94-4a28-a885-07f5c96ebe39
-# ╟─87a183bc-3857-4189-8103-18c46ff3245d
 # ╠═5338451e-3c4b-4030-bbbb-42eaf4209a89
 # ╟─6970dab5-16bd-4898-b88d-723cb1b3d89e
 # ╠═97b0763d-dcab-4afa-b660-52e18b3d523f
