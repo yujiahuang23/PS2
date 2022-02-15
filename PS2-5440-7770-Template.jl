@@ -119,8 +119,8 @@ begin
 
 	# show -
 	S
-	species_array
 	reaction_name_array
+	species_array
 end
 
 # ╔═╡ ab2bcfd5-3ba7-4388-8a3c-2cb95fba989a
